@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+    </script>
+</head>
+
+<body>
+    <p id="result"></p>
+    <script>
+        $(document).ready(function () {
+            url = "http://localhost:3000/comment";
+            $.get(url, function (result) {
+                for (i = 0; i < result.lenght; i++)
+                    document.getElementById("result").innerHTML()  += result[i] 
+            })
+        })
+    </script>
+</body>
+
+</html>

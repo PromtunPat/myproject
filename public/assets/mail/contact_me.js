@@ -7,7 +7,7 @@ $(function () {
             // additional error messages or events
         },
         submitSuccess: function ($form, event) {
-            event.preventDefault(); 
+            event.preventDefault();
             // get values from FORM
             var name = $("input#name").val();
             var email = $("input#email").val();
@@ -21,13 +21,14 @@ $(function () {
             $this = $("#sendMessageButton");
             $this.prop("disabled", true); //ปิดการใช้งานปุ่มส่ง ajax
             $.ajax({
-                url: "/assets/mail/contact_me.php",
-                type: "POST",
+                url: "/sendMessage",
+                type: "GET",
                 data: {
                     name: name,
                     phone: phone,
                     email: email,
                     message: message,
+                    dataType: 'json'
                 },
                 cache: false,
                 success: function () {
@@ -56,8 +57,8 @@ $(function () {
                     $("#success > .alert-danger").append(
                         $("<strong>").text(
                             "Sorry " +
-                                firstName +
-                                ", it seems that my mail server is not responding. Please try again later!" //ซอฟเวอร์ไม่ตอบสนอง
+                            firstName +
+                            ", it seems that my mail server is not responding. Please try again later!" //ซอฟเวอร์ไม่ตอบสนอง
                         )
                     );
                     $("#success > .alert-danger").append("</div>");
@@ -66,7 +67,7 @@ $(function () {
                 },
                 complete: function () {
                     setTimeout(function () {
-                        $this.prop("disabled", false); 
+                        $this.prop("disabled", false);
                     }, 1000);
                 },
             });
